@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FootPrint</string>
+    <string name="Loginemail">Email</string>
+    <string name="Loginpassword">Password</string>
+    <string name="footprintmap">FootPrintMap</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="goToregister">Register</string>
+    <string name="footprint_map">Footprint Map</string>
+    <string name="register">Register</string>
+    <string name="registername">Name</string>
+    <string name="registeremail">Email</string>
+    <string name="registerphone_number">Phone Number</string>
+    <string name="registerpassword">Password</string>
+    <string name="home">Home</string>
+    <string name="add">Add</string>
+    <string name="setting">Setting</string>
+    <string name="navigation_drawer_close">Close nav drawer</string>
+    <string name="navigation_drawer_opne">Open nav drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello ADD fragment</string>
+</resources>
