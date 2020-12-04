@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FootPrint">
         <activity android:name=".UI.SettingActivity"></activity>
-        <activity android:name=".UI.Add" />
+        <activity android:name=".UI.Add"
+            android:label="@string/add"
+            android:parentActivityName=".UI.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UI.MainActivity" />
+        </activity>
         <activity android:name=".UI.Register" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
