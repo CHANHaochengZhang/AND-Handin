@@ -2,6 +2,7 @@ package com.example.footprint.Model;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -15,6 +16,7 @@ public class CityRepository {
         CityDatabase database = CityDatabase.getInstance(application);
         cityDao = database.cityDao();
         allCities = cityDao.getAllCities();
+        Log.e("DDDDDDDDDD","Rep");
     }
 // Seems like this way is outdated - working in the background
     public void insert(City city) {

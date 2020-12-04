@@ -24,6 +24,6 @@ public interface CityDao {
     @Query("DELETE FROM city_table")
     void deleteAllCities();
 
-    @Query("SELECT * FROM city_table ORDER BY id DESC")
+    @Query("SELECT * FROM city_table")
     LiveData<List<City>> getAllCities();
 }

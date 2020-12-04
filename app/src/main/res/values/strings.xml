@@ -36,4 +36,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="city_name">City Name</string>
+    <string name="hint_email">Email</string>
+    <string name="button_login">LOGIN</string>
 </resources>

@@ -22,7 +22,7 @@ public class AddCityViewModel extends AndroidViewModel {
     }
 
     public void insert(City city){
-        repository.update(city);
+        repository.insert(city);
     }
     public void delete(City city){
         repository.delete(city);

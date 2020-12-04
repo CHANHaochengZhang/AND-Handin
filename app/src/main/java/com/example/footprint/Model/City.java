@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "city_table")
 public class City {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -21,6 +22,7 @@ public class City {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getCityName() {
         return cityName;
