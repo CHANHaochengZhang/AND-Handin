@@ -7,7 +7,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,12 +21,23 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import com.example.footprint.Model.City;
+import com.example.footprint.Model.CityRepository;
+import com.example.footprint.Model.Photo;
+import com.example.footprint.Model.PhotoApi;
+import com.example.footprint.Model.PhotoResponse;
+import com.example.footprint.Model.ServiceGenerator;
 import com.example.footprint.R;
 import com.example.footprint.UI.Login;
 import com.example.footprint.ViewModel.MainViewModel;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
 import java.util.NavigableMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -30,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
 
     MainViewModel viewModel;
-
+    String url;
 
 
     @Override
@@ -39,7 +54,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         setUpNavigationDrawer();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        viewModel.updatePhoto("Nanjing");
+        RecyclerView recyclerView = findViewById(R.id.recycler_main_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        MainAdapter adapter = new MainAdapter(this);
+        recyclerView.setAdapter(adapter);
+
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getCities().observe(this, new Observer<List<City>>() {
+            @Override
+            public void onChanged(List<City> cities) {
+                adapter.setCityNames(cities);
+                Log.e("Mainactivity", cities.get(0).getCityName());
+                for (int i = 0; i < cities.size(); i++) {
+
+
+                }
+            }
+        });
     }
 
     /*--------------NavigationDrawer---------------*/
@@ -86,4 +120,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /*--------------NavigationDrawer end---------------*/
+
 }

@@ -7,9 +7,11 @@ import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.footprint.UI.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,13 +25,24 @@ public class CityRepository {
     private CityDao cityDao;
     private LiveData<List<City>> allCities;
 
-    private MutableLiveData<Photo> photo;
+    private ArrayList<City> dummyCity;
+
+    private MutableLiveData<List<Photo>> photos;
+
 
     private CityRepository(Application application) {
         CityDatabase database = CityDatabase.getInstance(application);
         cityDao = database.cityDao();
         allCities = cityDao.getAllCities();
-        Log.e("Repository", "Rep");
+
+        photos = new MutableLiveData<>();
+
+
+        dummyCity = new ArrayList<>();
+        dummyCity.add(new City("Horsens"));
+        dummyCity.add(new City("Nanjing"));
+        dummyCity.add(new City("Newyork"));
+
     }
 
     public static synchronized CityRepository getInstance(Application application) {
@@ -61,6 +74,7 @@ public class CityRepository {
     public LiveData<List<City>> getAllCities() {
         return allCities;
     }
+
 
     private static class InsertCityAsyncTask extends AsyncTask<City, Void, Void> {
         private CityDao cityDao;
@@ -121,24 +135,18 @@ public class CityRepository {
 
 
     /*Photo Api Unsplash start */
-    public LiveData<Photo> getPhoto() {
-        return photo;
+    public LiveData<List<Photo>> getPhoto() {
+        return photos;
     }
 
     public void updatePhoto(String cityName) {
         PhotoApi photoApi = ServiceGenerator.getPhotoApi();
-        //    Call<PhotoResponse> call = photoApi.getPhoto(cityName);
         Call<PhotoResponse> call = photoApi.getPhotos(cityName);
-        Log.e("update", "1");
         call.enqueue(new Callback<PhotoResponse>() {
             @Override
             public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
                 if (response.code() == 200) {
-                 PhotoResponse photoResponses = response.body();
-                  Log.e("200 OK","ok");
-                  List<Photo> photos = photoResponses.getResults();
-                  Log.e("!!!!!!!",photos.get(0).getUrls());
-
+                   photos.setValue(response.body().getResults());
                 } else {
                     Log.e("!! Photo url is notOK", String.valueOf(response.code()));
                 }
@@ -149,16 +157,5 @@ public class CityRepository {
                 Log.e("Retrofit", "Wrong");
             }
         });
-//        call.enqueue(new Callback<List<PhotoResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<PhotoResponse>> call, Response<List<PhotoResponse>> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<PhotoResponse>> call, Throwable t) {
-//                Log.e("Retrofit", "Wrong");
-//            }
-//        });
     }
 }

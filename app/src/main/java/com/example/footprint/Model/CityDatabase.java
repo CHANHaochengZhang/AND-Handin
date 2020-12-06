@@ -25,35 +25,35 @@ public abstract class CityDatabase extends RoomDatabase {
                     CityDatabase.class,
                     "city_database")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback).build();
+                    .build();
             Log.e("CityDb","CityDb");
         }
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
+//    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//            new PopulateDbAsyncTask(instance).execute();
+//        }
+//    };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-        private CityDao cityDao;
-
-        private PopulateDbAsyncTask(CityDatabase db) {
-            cityDao = db.cityDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            Log.e("DDDDDDDDDD","INSERT");
-            cityDao.insert(new City("Atlanta"));
-            cityDao.insert(new City("City1"));
-            cityDao.insert(new City("City2"));
-            return null;
-        }
-    }
+//    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+//        private CityDao cityDao;
+//
+//        private PopulateDbAsyncTask(CityDatabase db) {
+//            cityDao = db.cityDao();
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            Log.e("DDDDDDDDDD","INSERT");
+//            cityDao.insert(new City("Atlanta"));
+//            cityDao.insert(new City("City1"));
+//            cityDao.insert(new City("City2"));
+//            return null;
+//        }
+//    }
 
 }

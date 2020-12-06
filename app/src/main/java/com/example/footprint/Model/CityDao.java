@@ -26,4 +26,5 @@ public interface CityDao {
 
     @Query("SELECT * FROM city_table")
     LiveData<List<City>> getAllCities();
+
 }
