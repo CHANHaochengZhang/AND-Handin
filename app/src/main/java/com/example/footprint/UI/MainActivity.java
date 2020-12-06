@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.view.View;
 
 import com.example.footprint.R;
 import com.example.footprint.UI.Login;
+import com.example.footprint.ViewModel.MainViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.NavigableMap;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
 
+    MainViewModel viewModel;
+
 
 
     @Override
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpNavigationDrawer();
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel.updatePhoto("Nanjing");
     }
 
     /*--------------NavigationDrawer---------------*/

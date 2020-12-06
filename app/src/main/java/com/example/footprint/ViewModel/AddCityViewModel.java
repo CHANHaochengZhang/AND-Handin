@@ -17,13 +17,14 @@ public class AddCityViewModel extends AndroidViewModel {
 
     public AddCityViewModel(@NonNull Application application) {
         super(application);
-        repository = new CityRepository(application);
+        repository = CityRepository.getInstance(application);
         allCities = repository.getAllCities();
     }
 
     public void insert(City city){
         repository.insert(city);
     }
+
     public void delete(City city){
         repository.delete(city);
     }

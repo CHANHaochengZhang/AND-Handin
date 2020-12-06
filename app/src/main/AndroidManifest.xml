@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.footprint">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FootPrint">
         <activity android:name=".UI.SettingActivity"></activity>
-        <activity android:name=".UI.Add"
+        <activity
+            android:name=".UI.Add"
             android:label="@string/add"
             android:parentActivityName=".UI.MainActivity">
             <meta-data

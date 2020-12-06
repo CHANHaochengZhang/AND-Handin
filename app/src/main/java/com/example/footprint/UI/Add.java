@@ -67,6 +67,7 @@ public class Add extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 addCityViewModel.delete(adapter.getCityAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(Add.this,"Deleted",Toast.LENGTH_SHORT).show();
+
             }
         }).attachToRecyclerView(recyclerView);
     }

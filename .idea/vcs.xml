@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AND-Handin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ImageSearchApp" vcs="Git" />
   </component>
 </project>
