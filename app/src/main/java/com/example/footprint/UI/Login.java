@@ -76,6 +76,7 @@ public class Login extends AppCompatActivity {
                     FirebaseUser user =FirebaseAuth.getInstance().getCurrentUser();
                     if (user.isEmailVerified()) {
                         Toast.makeText(Login.this,"Success! Welcome! ",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Login.this, MainActivity.class));
                     } else {
                         Toast.makeText(Login.this,"Check your email to verify ",Toast.LENGTH_LONG).show();
                     }
@@ -83,8 +84,6 @@ public class Login extends AppCompatActivity {
 
                     progressBar.setVisibility(View.INVISIBLE);
 
-                    //TODO: GO to main
-                    startActivity(new Intent(Login.this, MainActivity.class));
 
                 }else {
                     Toast.makeText(Login.this,"Failed to Login",Toast.LENGTH_LONG).show();
