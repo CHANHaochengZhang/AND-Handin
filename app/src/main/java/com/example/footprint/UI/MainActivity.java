@@ -67,10 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onChanged(List<City> cities) {
                 adapter.setCityNames(cities);
-                Log.e("Mainactivity", cities.get(0).getCityName());
                 for (int i = 0; i < cities.size(); i++) {
-
-
+                    viewModel.updatePhoto(cities.get(i).getCityName());
                 }
             }
         });

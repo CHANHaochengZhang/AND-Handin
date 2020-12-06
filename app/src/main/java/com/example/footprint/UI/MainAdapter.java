@@ -52,7 +52,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainHolder> {
     public void onBindViewHolder(@NonNull MainHolder holder, int position) {
         City current = cities.get(position);
         holder.cityText.setText(current.getCityName());
-        Log.e("Adapter",String.valueOf(urls.size()));
 
        Glide.with(mContet).load(urls.get(position)).apply(options).into(holder.cityImg);
 
